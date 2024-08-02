@@ -9,12 +9,19 @@ setup(
     description='A library to enhance frontend performance and streamline dynamic data handling in Django applications',
     long_description=long_description,
     long_description_content_type="text/markdown",
+    keywords='django, forms, ajax, remote data, dynamic forms, form helpers, django widgets, django integration, frontend performance, django library',
     author='Deivid Hugo',
     author_email='deividhugoof@gmail.com',
     url='https://github.com/DeividHugo/django-remote-form-helpers',
     license='MIT',
     packages=find_packages(),
     install_requires=[
-        'Django>=1.9,<=5.0.7',
+        'Django>=1.9',
+    ],
+    classifiers=[
+        'Programming Language :: Python :: 3',
+        'Framework :: Django',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
     ],
 )
