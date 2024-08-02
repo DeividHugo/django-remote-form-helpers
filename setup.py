@@ -11,7 +11,7 @@ setup(
     long_description_content_type="text/markdown",
     author='Deivid Hugo',
     author_email='deividhugoof@gmail.com',
-    url='https://github.com/PythonCreatedLibs/django_remote_form_helpers',
+    url='https://github.com/DeividHugo/django-remote-form-helpers',
     license='MIT',
     packages=find_packages(),
     install_requires=[

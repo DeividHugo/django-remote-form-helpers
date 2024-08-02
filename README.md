@@ -38,15 +38,17 @@ To enable frontend JavaScript functionalities, you need to include the JavaScrip
 If you choose to use a CDN (Content Delivery Network) to include the JavaScript file, add the following line to your HTML template:
 
 ```html
-<script src="https://cdn.example.com/path/to/your_file.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/DeividHugo/django-remote-form-helpers/django_remote_form_helpers/static/django_remote_form_helpers/js/jquery.remote.in.django.form.js"></script>
 ```
+
+**Note:** While using a CDN can be convenient for quick testing, it is not the recommended approach for production environments. For a more reliable setup, especially for production, refer to Option 2.
 
 #### Option 2: Using Static Files in Django:
 
 If you are serving the JavaScript file directly from your static files, you need to ensure the following:
 
 1. **Download the File**  
-   Obtain the file `jquery.remote.in.django.form.js` that you want to use.
+   Obtain the file [jquery.remote.in.django.form.js](https://github.com/DeividHugo/django-remote-form-helpers/raw/main/django_remote_form_helpers/static/django_remote_form_helpers/js/jquery.remote.in.django.form.js).
 
 2. **Place the File in the Static Folder**  
    - Navigate to your Django project's `static` folder. If the `static` folder does not exist, create it.
