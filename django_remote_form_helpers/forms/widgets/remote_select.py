@@ -25,7 +25,7 @@ class RemoteSelectWidget(forms.Select):
         if not url_name and not url:
             raise ImproperlyConfigured("Either 'url_name' or 'url' must be provided.")
         
-        self.url = url if url else reverse_lazy(url_name)Nao e
+        self.url = url if url else reverse_lazy(url_name)
         self.empty_label = empty_label
         
         attrs = attrs or {}
