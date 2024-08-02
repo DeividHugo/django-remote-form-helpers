@@ -1,6 +1,18 @@
-__pycache__/
+# Python
 *.pyc
 *.pyo
-.DS_Store
-.env
-venv
+*.pyd
+__pycache__/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+
+# Virtual environment
+venv/
+ENV/
+env/
