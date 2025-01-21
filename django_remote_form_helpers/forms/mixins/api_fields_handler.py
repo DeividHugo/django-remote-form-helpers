@@ -1,7 +1,8 @@
 from django import forms
+from django_remote_form_helpers.forms.mixins.clear_disabled_field_errors import ClearDisabledFieldErrorsMixin
 
 
-class APIFieldsHandlerFormMixin:
+class APIFieldsHandlerFormMixin(ClearDisabledFieldErrorsMixin):
     """
     Django form mixin for validating fields using API data.
 
