@@ -1,13 +1,8 @@
 from django import forms
-from django.core.exceptions import ImproperlyConfigured
-import django
-if django.VERSION < (1, 10):
-    from django.core.urlresolvers import reverse_lazy
-else:
-    from django.urls import reverse_lazy
+from django_remote_form_helpers.forms.widgets.mixins import RemoteSelectWidgetMixin
 
 
-class RemoteSelectWidget(forms.Select):
+class RemoteSelectWidget(forms.Select, RemoteSelectWidgetMixin):
     """
     A Django form widget for creating a select field that dynamically loads its options
     from a remote URL. This widget uses AJAX to fetch the options and can display an empty
@@ -22,16 +17,13 @@ class RemoteSelectWidget(forms.Select):
     """
 
     def __init__(self, url_name=None, url=None, empty_label='---------', *args, attrs=None, **kwargs):
-        if not url_name and not url:
-            raise ImproperlyConfigured("Either 'url_name' or 'url' must be provided.")
-        
-        self.url = url if url else reverse_lazy(url_name)
-        self.empty_label = empty_label
+        self.url = self.get_url(url, url_name)
+        self.empty_label = self.get_empty_label(empty_label)
         
         attrs = attrs or {}
         attrs.update({
-            'data-url': url if url else reverse_lazy(url_name),
-            'data-empty-label': empty_label,
+            'data-url': self.url,
+            'data-empty-label': self.empty_label,
             'class': attrs.get('class', '') + ' remote-in-django-form'
         })
         

@@ -1,0 +1,1 @@
+from django_remote_form_helpers.forms.widgets.mixins.remote_select import RemoteSelectWidgetMixin
