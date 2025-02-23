@@ -33,12 +33,14 @@ class APIFieldsHandlerFormMixin:
 
     def initialize_api_fields(self):
         if not self.is_bound:
+            instance_pk = getattr(self.instance, 'pk', None)
+
             for field_name in self.API_FIELDS:
                 form_field = self.fields.get(field_name)
                 initial_value = self.initial.get(field_name, None)
                 
                 if isinstance(form_field, forms.ModelChoiceField):                
-                    if initial_value is None and self.instance:
+                    if initial_value is None and instance_pk:
                         initial_value = getattr(self.instance, field_name, None)
                     
                     if initial_value is not None:
