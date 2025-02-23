@@ -1,13 +1,8 @@
 from django import forms
-from django.core.exceptions import ImproperlyConfigured
-import django
-if django.VERSION < (1, 10):
-    from django.core.urlresolvers import reverse_lazy
-else:
-    from django.urls import reverse_lazy
+from django_remote_form_helpers.forms.widgets.mixins import RemoteSelectWidgetMixin
 
 
-class RemoteChainedSelectWidget(forms.Select):
+class RemoteChainedSelectWidget(forms.Select, RemoteSelectWidgetMixin):
     """
     A Django form widget for creating a select field that dynamically updates its options
     based on the selection of a parent field. This widget uses AJAX requests to fetch the
@@ -24,15 +19,17 @@ class RemoteChainedSelectWidget(forms.Select):
             ))
     """
     def __init__(self, parent_name, url_name=None, url=None, url_param_field=None, empty_label='---------', *args, attrs=None, **kwargs):
-        if not url_name and not url:
-            raise ImproperlyConfigured("Either 'url_name' or 'url' must be provided.")
-        
+        self.parent_name = parent_name
+        self.url = self.get_url(url, url_name)
+        self.empty_label = self.get_empty_label(empty_label)
+        self.url_param_field = url_param_field or ''
+
         attrs = attrs or {}
         attrs.update({
-            'data-parent-name': parent_name,
-            'data-url': url if url else reverse_lazy(url_name),
-            'data-empty-label': empty_label,
-            'data-url-param-field': url_param_field or '',
+            'data-parent-name': self.parent_name,
+            'data-url': self.url,
+            'data-empty-label': self.empty_label,
+            'data-url-param-field': self.url_param_field,
             'class': attrs.get('class', '') + ' remote-chained-in-django-form'
         })
         
